@@ -52,3 +52,32 @@ cp ${file_name} \
 s3://${s3_bucket}/${file_name}
 echo "Copied the archive to S3"
 
+
+
+################ Task3 ############################
+
+#Bookeeping
+if [ -e /var/www/html/inventory.html ]
+then
+        echo "Inventory.html file exists"
+else
+        echo "Creating Inventory.html"
+        touch /var/www/html/inventory.html
+        echo "  Log Type                Date Created            Type            Size" >> /var/www/html/inventory.html
+fi
+
+echo "Updating the inventory.html"
+echo "  httpd-log               ${timestamp}             tar            `du -h /tmp/${myname}-httpd-logs-${timestamp}.tar | awk '{print $1}'`" >> /var/www/html/inventory.html
+
+
+#Cron Job
+
+if [ -e /etc/cron.d/automation ]
+then
+        echo "Cron Job is present"
+else
+        echo"Creating the cron job that runs every midnight"
+        touch /etc/cron.d/automation
+        echo "0 0 * * * root /root/Automation_Project/automation.sh" > /etc/cron.d/automation
+fi
+
