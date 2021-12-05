@@ -1,0 +1,12 @@
+Script does the following
+
+1.Updates apt repo
+2.Checkes if Apache2 is insatlled
+3.Checkes if Apache2 is running 
+4.Checkes if Apache2 is enabled
+5.Tar the log files
+6.Copy the archive to S3
+
+7.Bookeeping of logs
+8.Cron Job to run the script everyday
+
